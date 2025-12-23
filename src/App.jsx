@@ -8,7 +8,7 @@ function App() {
   return (
     <HashRouter>
 
-      <div className="relative min-h-screen bg-neutral-950 text-neutral-200 font-mono">
+      <div className="relative min-h-screen bg-neutral-950 text-neutral-200 font-mono w-full overflow-x-hidden">
 
         <Navbar />
 

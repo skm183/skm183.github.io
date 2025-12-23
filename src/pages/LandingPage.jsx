@@ -23,7 +23,7 @@ const LandingPage = () => {
   }, [location]);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full max-w-full overflow-hidden">
 
       <div className="relative z-10">
         

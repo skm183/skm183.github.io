@@ -33,7 +33,7 @@ const ProjectList = () => {
       <div className="max-w-7xl mx-auto">
         
         <div className="mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold font-mono text-white mb-4 flex items-center gap-3">
+            <h2 className="text-3xl md:text-5xl font-bold font-mono text-white mb-4 flex items-center gap-3">
               <span className="text-cyan-500">/</span> 
               project_archives
             </h2>

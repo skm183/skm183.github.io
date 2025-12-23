@@ -22,13 +22,13 @@ const Home = () => {
   };
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-neutral-950">
+    <section className="relative w-full min-h-screen overflow-hidden bg-neutral-950 flex flex-col justify-center pt-28 pb-10 md:pt-20 md:pb-0">
 
       <div className="absolute inset-0 z-20 pointer-events-none">
         <Hologram />
       </div>
 
-      <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 h-full content-center lg:content-normal items-center max-w-7xl mx-auto px-6">
+      <div className="relative w-full grid grid-cols-1 lg:grid-cols-2 gap-8 content-center lg:content-normal items-center max-w-7xl mx-auto px-6">
           
         <div className="relative z-30 flex flex-col justify-center items-start font-mono font-bold">
           
@@ -53,10 +53,10 @@ const Home = () => {
           <div className='h-[80px] lg:h-[100px] flex items-start'>
             <TypeAnimation
               sequence={[
-                'Kernel Development.', 2000, () => handleSlideChange(1),
-                'Full Stack Web.', 2000, () => handleSlideChange(2),
-                'Machine Learning.', 2000, () => handleSlideChange(3),
-                'Pentesting.', 2000, () => handleSlideChange(0)
+                'Kernel Development.', () => handleSlideChange(1), 2000,
+                'Full Stack Web.', () => handleSlideChange(2), 2000,
+                'Machine Learning.', () => handleSlideChange(3), 2000,
+                'Pentesting.', () => handleSlideChange(0), 2000
               ]}
               wrapper="span"
               speed={50}
