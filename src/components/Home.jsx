@@ -53,10 +53,10 @@ const Home = () => {
           <div className='h-[80px] lg:h-[100px] flex items-start'>
             <TypeAnimation
               sequence={[
-                'Kernel Development.', () => handleSlideChange(1), 2000,
-                'Full Stack Web.', () => handleSlideChange(2), 2000,
-                'Machine Learning.', () => handleSlideChange(3), 2000,
-                'Pentesting.', () => handleSlideChange(0), 2000
+                'Kernel Development.', 2000, () => handleSlideChange(1),
+                'Full Stack Web.', 2000, () => handleSlideChange(2),
+                'Machine Learning.', 2000, () => handleSlideChange(3),
+                'Pentesting.', 2000, () => handleSlideChange(0)
               ]}
               wrapper="span"
               speed={50}
