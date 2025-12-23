@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import LandingPage from './pages/LandingPage';
 import AllBlogs from './pages/AllBlogs';
@@ -6,7 +6,7 @@ import BlogPost from './pages/BlogPost';
 
 function App() {
   return (
-    <Router>
+    <HashRouter>
 
       <div className="relative min-h-screen bg-neutral-950 text-neutral-200 font-mono">
 
@@ -19,7 +19,7 @@ function App() {
         </Routes>
 
       </div>
-    </Router>
+    </HashRouter>
   )
 }
 

@@ -18,6 +18,17 @@ const BlogPost = () => {
 
   if (!post) return <div className="text-white p-10 font-mono">Loading /dev/null...</div>;
 
+  const markdownComponents = {
+    a: ({ node, ...props }) => (
+      <a 
+        {...props} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="hover:underline hover:text-cyan-300 transition-colors"
+      />
+    )
+  };
+
   return (
     <article className="min-h-screen bg-neutral-950 py-20 px-6 font-mono text-neutral-300 selection:bg-cyan-500/30 selection:text-cyan-100">
       <div className="max-w-4xl mx-auto">
@@ -49,7 +60,7 @@ const BlogPost = () => {
           
           prose-headings:font-mono prose-headings:text-cyan-50
           
-          prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:underline
+          prose-a:text-cyan-400 prose-a:no-underline
 
           prose-blockquote:not-italic 
           prose-blockquote:font-normal 
@@ -78,7 +89,7 @@ const BlogPost = () => {
           [&_pre_code]:text-inherit 
           [&_pre_code]:font-inherit
         ">
-            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{post.body}</ReactMarkdown>
+            <ReactMarkdown components={markdownComponents} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{post.body}</ReactMarkdown>
         </div>
 
       </div>
