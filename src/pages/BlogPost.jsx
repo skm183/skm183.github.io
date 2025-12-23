@@ -31,7 +31,7 @@ const BlogPost = () => {
 
   return (
     <article className="min-h-screen bg-neutral-950 py-20 px-6 font-mono text-neutral-300 selection:bg-cyan-500/30 selection:text-cyan-100">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         
         <Link to="/blog" className="inline-flex items-center gap-2 text-cyan-400 md:text-neutral-500 hover:text-cyan-400 mb-8 transition-colors group">
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
@@ -56,7 +56,8 @@ const BlogPost = () => {
         </header>
 
         <div className="
-          prose prose-invert prose-lg max-w-none
+          prose prose-invert prose-sm md:prose-lg max-w-none
+          prose-h1:text-2xl md:prose-h1:text-4xl
           
           prose-headings:font-mono prose-headings:text-cyan-50
           
