@@ -1,1 +1,52 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  
+    match /comments/{commentId} {
+      allow read: if true;
+      allow create: if request.auth != null 
+                    && request.resource.data.userId == request.auth.uid
+                    && request.resource.data.commentText.size() > 0 
+                    && request.resource.data.commentText.size() <= 1000;
 
+      allow delete: if request.auth != null && (request.auth.uid == resource.data.userId || request.auth.uid == "Jfjd1pKZkRT5TCdA8bBzWCgTh2R2");
+
+      allow update: if request.auth != null
+        && request.resource.data.userId == resource.data.userId
+        && request.resource.data.postId == resource.data.postId
+
+        && request.resource.data.commentText.size() > 0 
+        && request.resource.data.commentText.size() <= 1000
+
+        && (
+          (
+            request.auth.uid == resource.data.userId 
+            && request.resource.data.commentText != resource.data.commentText
+            && (
+              request.resource.data.likes == resource.data.likes ||
+              request.resource.data.likes.removeAll(resource.data.likes).hasOnly([request.auth.uid]) ||
+              resource.data.likes.removeAll(request.resource.data.likes).hasOnly([request.auth.uid])
+            )
+          )
+          ||
+          (
+            request.resource.data.commentText == resource.data.commentText
+            && (
+              request.resource.data.likes.removeAll(resource.data.likes).hasOnly([request.auth.uid])
+              || 
+              resource.data.likes.removeAll(request.resource.data.likes).hasOnly([request.auth.uid])
+            )
+          )
+        );
+    }
+    
+    match /blogViews/{postId} {
+      allow read: if true;
+      
+      allow create, update: if 
+        request.resource.data.keys().hasOnly(['views'])
+        && request.resource.data.views is int
+        && (resource == null || request.resource.data.views >= resource.data.views);
+    }
+  }
+}
