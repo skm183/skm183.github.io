@@ -3,12 +3,12 @@ import { FaGithub, FaGitlab, FaExternalLinkAlt, FaArrowRight } from 'react-icons
 const ProjectList = () => {
   const projects = [
     {
-      title: "Pulse",
-      description: "A lightweight, multi-threaded CLI health monitoring utility written in Rust.",
-      tech: ["Rust", "CLI", "Systemd"],
-      status: "in-progress", 
+      title: "Arc",
+      description: "An agentic RAG assisstant for Linux systems",
+      tech: ["Python", "AI", "RAG"],
+      status: "completed", 
       repoType: "github", 
-      links: { demo: "", code: "https://github.com/skm183/pulse" }
+      links: { demo: "", code: "https://github.com/skm183/Arc" }
     },
     {
       title: "My Portfolio",

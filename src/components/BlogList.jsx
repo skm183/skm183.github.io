@@ -1,17 +1,48 @@
-import { FaArrowRight, FaRegFileAlt, FaRegClock } from 'react-icons/fa';
+import { FaArrowRight, FaRegFileAlt, FaRegClock, FaEye } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { db } from '../firebase';
+import { getDocs, collection } from 'firebase/firestore';
 
 const BlogList = () => {
   const logs = [
+    {
+      date: "28-06-2026",
+      title: "the_ghost_print_2.md",
+      excerpt: "From a hacky fix to a mainline Linux driver.",
+      category: "KERNEL",
+      readTime: "4 min",
+      link: "/blog/ghost_print_part2",
+      slug: "ghost_print_part2"
+    },
     {
       date: "22-12-2025",
       title: "the_ghost_print.md",
       excerpt: "Stealing my own fingerprints from a locked sensor chip.",
       category: "KERNEL",
       readTime: "6 min",
-      link: "/blog/ghost_print"
-    },
+      link: "/blog/ghost_print",
+      slug: "ghost_print"
+    }
   ];
+
+    const [viewCounts, setViewCounts] = useState({});
+  
+    useEffect(() => {
+        const fetchAllViews = async () => {
+            try {
+                const snapshot = await getDocs(collection(db, "blogViews"));
+                const viewsData = {};
+                snapshot.forEach(doc => {
+                    viewsData[doc.id] = doc.data().views || 0; 
+                });
+                setViewCounts(viewsData);
+            } catch (error) {
+                console.error("Failed to fetch views:", error);
+            }
+        };
+        fetchAllViews();
+    }, []);
 
   return (
     <section className="relative w-full py-20 px-6 bg-neutral-950">
@@ -80,6 +111,11 @@ const BlogList = () => {
                             <FaRegClock className="text-cyan-500/70" />
                             {log.readTime}
                          </span>
+                         <span className="text-cyan-500/30">|</span>
+                        <span className="flex items-center gap-1.5 whitespace-nowrap">
+                            <FaEye className="text-cyan-500/50" />
+                            {viewCounts[log.slug] ? viewCounts[log.slug]:"-"}
+                        </span>
                     </div>
                 </Link>
             ))}

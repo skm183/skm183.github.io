@@ -10,8 +10,8 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [glitch, setGlitch] = useState(false);
 
-  const holograms = [kernelImg, webImg, mlImg, pentestImg];
-  const scales = [1.5, 1.5, 1.3, 1.4];
+  const holograms = [kernelImg, webImg, pentestImg];
+  const scales = [1.5, 1.3, 1.4];
 
   const handleSlideChange = (newIndex) => {
     setGlitch(true);
@@ -55,7 +55,6 @@ const Home = () => {
               sequence={[
                 'Kernel Development.', 2000, () => handleSlideChange(1),
                 'Full Stack Web.', 2000, () => handleSlideChange(2),
-                'Machine Learning.', 2000, () => handleSlideChange(3),
                 'Pentesting.', 2000, () => handleSlideChange(0)
               ]}
               wrapper="span"

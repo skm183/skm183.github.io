@@ -1,0 +1,12 @@
+# ==============================================================================
+# Vulnerability Disclosure Program
+# ==============================================================================
+
+Contact: mailto:siddheshkm25@iitk.ac.in
+Expires: 2027-01-01T00:00:00.000Z
+Preferred-Languages: en
+Policy: https://skm183.is-a.dev/security
+Canonical: https://skm183.is-a.dev/.well-known/security.txt
+
+# If you found a flaw, please report it securely. 
+# Do not exploit it further than necessary to prove the concept.

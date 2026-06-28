@@ -16,6 +16,7 @@
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.1",
+    "firebase": "^12.15.0",
     "front-matter": "^4.0.2",
     "lucide-react": "^0.561.0",
     "react": "^19.2.0",

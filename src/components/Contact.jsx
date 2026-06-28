@@ -36,7 +36,7 @@ const Contact = () => {
           Interested in collaborating? Or just want to reach out? Establish a secure connection via the email protocol:
         </p>
 
-        <div className="relative group max-w-lg mx-auto mb-24">
+        <div className="relative group max-w-lg mx-auto mb-10">
             <div className="absolute inset-0 bg-cyan-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></div>
             
             <button 
@@ -72,7 +72,7 @@ const Contact = () => {
             </button>
         </div>
 
-        <div className="flex justify-center gap-6 mb-6">
+        <div className="flex justify-center gap-6">
             {socials.map((social, idx) => (
                 <a 
                     key={idx}
@@ -88,16 +88,6 @@ const Contact = () => {
                 </a>
             ))}
         </div>
-
-        <footer className="border-t border-neutral-900/50 pt-8 text-[12px] font-mono text-neutral-400 flex flex-col gap-2">
-            <div className="flex justify-center items-center gap-2 text">
-                <span>There is no place like</span>
-                <span className="text-cyan-500 font-bold text-lg">~/</span>
-            </div>
-            <div>
-                © {new Date().getFullYear()} skm183
-            </div>
-        </footer>
       </div>
     </section>
   );

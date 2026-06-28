@@ -1,21 +1,39 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { FaArrowLeft, FaTerminal } from 'react-icons/fa';
+import { FaArrowLeft, FaTerminal, FaEye } from 'react-icons/fa';
 import { getBlogBySlug } from '../utils/blogLoader';
 import rehypeHighlight from 'rehype-highlight';
 import remarkGfm from 'remark-gfm';
 import 'highlight.js/styles/vs2015.css';
+import Comments from '../components/Comments';
+import { db } from '../firebase'; 
+import { doc, setDoc, increment, onSnapshot } from 'firebase/firestore';
 
 const BlogPost = () => {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
+  const [viewCount, setViewCount] = useState(null);
 
   useEffect(() => {
+    if (!slug) {return;}
+
     const data = getBlogBySlug(slug);
     setPost(data);
-  }, [slug]);
 
+    const viewRef = doc(db, "blogViews", slug);
+
+    setDoc(viewRef, { views: increment(1) }, { merge: true });
+
+    const unsubscribe = onSnapshot(viewRef, (docSnap) => {
+      if (docSnap.exists()) {
+        setViewCount(docSnap.data().views);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [slug]);
+  
   if (!post) return <div className="text-white p-10 font-mono">Loading /dev/null...</div>;
 
   const markdownComponents = {
@@ -31,7 +49,7 @@ const BlogPost = () => {
 
   return (
     <article className="min-h-screen bg-neutral-950 py-20 px-6 font-mono text-neutral-300 selection:bg-cyan-500/30 selection:text-cyan-100">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         
         <Link to="/blog" className="inline-flex items-center gap-2 text-cyan-400 md:text-neutral-500 hover:text-cyan-400 mb-8 transition-colors group">
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
@@ -51,7 +69,11 @@ const BlogPost = () => {
                 <FaTerminal className="text-cyan-500"/>
                 <span>{post.readTime} read</span>
                 <span className="text-neutral-600 mx-2">|</span>
-                <span>{post.size}</span>
+                <span>{post.size}</span>                
+            </div>
+            <div className="flex items-center gap-2 text-sm text-neutral-400 bg-neutral-900/50 p-2 rounded border border-neutral-800 w-fit">
+                <FaEye className='text-cyan-500'/>
+                <span>{viewCount ? viewCount : "-"} views</span>
             </div>
         </header>
 
@@ -94,6 +116,7 @@ const BlogPost = () => {
         </div>
 
       </div>
+      <Comments postId={slug} />
     </article>
   );
 };

@@ -1,16 +1,35 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaRegFileAlt, FaRegClock, FaSearch } from 'react-icons/fa';
+import { FaRegFileAlt, FaRegClock, FaSearch, FaEye } from 'react-icons/fa';
 import { getBlogs } from '../utils/blogLoader';
+import { db } from '../firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 
 const AllBlogs = () => {
   const [logs, setLogs] = useState([]);
   const [search, setSearch] = useState("");
+  const [viewCounts, setViewCounts] = useState({});
 
   useEffect(() => {
     setLogs(getBlogs());
   }, []);
+
+  useEffect(() => {
+        const fetchAllViews = async () => {
+            try {
+                const snapshot = await getDocs(collection(db, "blogViews"));
+                const viewsData = {};
+                snapshot.forEach(doc => {
+                    viewsData[doc.id] = doc.data().views || 0; 
+                });
+                setViewCounts(viewsData);
+            } catch (error) {
+                console.error("Failed to fetch views:", error);
+            }
+        };
+        fetchAllViews();
+    }, []);
 
   const filteredLogs = logs.filter(log => 
     log.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -18,7 +37,7 @@ const AllBlogs = () => {
   );
 
   return (
-    <div className="min-h-screen bg-neutral-950 py-20 px-6 font-mono">
+    <div className="flex flex-col grow bg-neutral-950 py-20 px-6 font-mono">
       <div className="max-w-7xl mx-auto">
 
         <div className="mb-12">
@@ -43,11 +62,19 @@ const AllBlogs = () => {
             <div className="col-span-2">Date</div>
             <div className="col-span-6">Subject</div>
             <div className="col-span-2">Category</div>
-            <div className="col-span-2 text-right">Metadata</div>
+            <div className="col-span-2">Metadata</div>
         </div>
 
         <div className="flex flex-col gap-2">
-            {filteredLogs.map((log) => (
+            {filteredLogs.sort((a,b) => {
+                const [dayA, monthA, yearA] = a.date.split('-');
+                const [dayB, monthB, yearB] = b.date.split('-');
+
+                const dateA = new Date(yearA, monthA-1, dayA);
+                const dateB = new Date(yearB, monthB-1, dayB);
+
+                return dateB - dateA;
+            }).map((log) => (
                 <Link 
                   key={log.slug} 
                   to={`/blog/${log.slug}`}
@@ -58,10 +85,15 @@ const AllBlogs = () => {
                     </div>
 
                     <div className="col-span-12 md:col-span-6 flex items-center gap-3">
-                         <FaRegFileAlt className="text-neutral-400 group-hover:text-cyan-500 transition-colors text-xs" />
-                         <span className="text-neutral-300 group-hover:text-cyan-400 font-bold truncate">
-                            {log.title}
-                         </span>
+                         <div className='flex flex-col'>
+                          <div className='flex flex-row items-center gap-2'>
+                            <FaRegFileAlt className="text-neutral-400 group-hover:text-cyan-500 transition-colors text-xs" />
+                            <span className="text-neutral-300 group-hover:text-cyan-400 font-bold truncate text-sm md:text-base">
+                                {log.title}
+                            </span>
+                          </div>
+                          <span className='text-neutral-400 group-hover:text-neutral-300 text-xs md:text-sm'>{log.excerpt}</span>
+                         </div>
                     </div>
 
                     <div className="col-span-6 md:col-span-2">
@@ -70,12 +102,17 @@ const AllBlogs = () => {
                         </span>
                     </div>
 
-                    <div className="col-span-6 md:col-span-2 text-right text-xs text-neutral-400 flex items-center justify-end gap-3">
-                         <span>{log.size}</span>
+                    <div className="col-span-6 md:col-span-2 text-right text-xs text-neutral-400 flex items-center justify-center gap-3">
+                         <span className='whitespace-nowrap'>{log.size}</span>
                          <span className="text-cyan-500/30">|</span>
-                         <span className="flex items-center gap-1.5">
+                         <span className="flex items-center gap-1.5 whitespace-nowrap">
                             <FaRegClock className="text-cyan-500/50" />
                             {log.readTime}
+                         </span>
+                         <span className="text-cyan-500/30">|</span>
+                         <span className="flex items-center gap-1.5 whitespace-nowrap">
+                            <FaEye className="text-cyan-500/50" />
+                            {viewCounts[log.slug] ? viewCounts[log.slug]:"-"}
                          </span>
                     </div>
                 </Link>

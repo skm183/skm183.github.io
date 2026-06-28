@@ -28,7 +28,7 @@ const Navbar = () => {
     setIsOpen(false); 
 
     if (link.type === "route") {
-      navigate("/blog");
+      navigate(link.path);
     } else {
       if (location.pathname === "/") {
         const element = document.getElementById(link.id);

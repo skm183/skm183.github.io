@@ -56,7 +56,7 @@ const About = () => {
                   DEPT: ELECTRICAL ENG.
                 </div>
                 <div className="px-4 py-2 bg-neutral-800/50 border border-neutral-700 text-neutral-400 font-mono text-xs rounded tracking-wider">
-                  YEAR: FRESHMAN (1st)
+                  YEAR: 2nd
                 </div>
               </div>
             </TechCard>
@@ -106,7 +106,7 @@ const About = () => {
               <ul className="space-y-4 font-mono text-neutral-300">
                 <li className="flex justify-between border-b border-neutral-800 pb-2">
                   <span>Uptime</span>
-                  <span className="text-cyan-400">18 Years</span>
+                  <span className="text-cyan-400">19 Years</span>
                 </li>
                 <li className="flex justify-between border-b border-neutral-800 pb-2">
                   <span>Coffee</span>
@@ -122,8 +122,8 @@ const About = () => {
             <TechCard title="BACKGROUND_PROCESSES" index={3} className="overflow-hidden">
               <div className="flex flex-col gap-4">
                 {[
+                  { name: "Guitar", cmd: "driver: audio_out", load: 70, icon: FaMusic },
                   { name: "Chess", cmd: "process: strategy", load: 50, icon: FaChessKnight },
-                  { name: "Music", cmd: "driver: audio_out", load: 70, icon: FaMusic },
                   { name: "Sports", cmd: "process: agility", load: 30, icon: FaTableTennis },
                   { name: "Overthinking", cmd: "task: recursion_loop", load: 99, icon: FaBrain },
                 ].map((proc, i) => {

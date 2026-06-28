@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# ==============================================================================
+# Notice to automated scanners and researchers:
+# If you are looking for vulnerabilities, please review the rules of engagement.
+# Target: https://skm183.is-a.dev/security
+# ==============================================================================
+
+Sitemap: https://skm183.is-a.dev/sitemap.xml
