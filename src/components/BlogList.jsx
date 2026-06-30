@@ -7,7 +7,7 @@ import { getDocs, collection } from 'firebase/firestore';
 const BlogList = () => {
   const logs = [
     {
-      date: "28-06-2026",
+      date: "30-06-2026",
       title: "the_ghost_print_2.md",
       excerpt: "From a hacky fix to a mainline Linux driver.",
       category: "KERNEL",

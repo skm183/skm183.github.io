@@ -1,6 +1,6 @@
 ---
 title: "The Ghost Print 2"
-date: "28-06-2026"
+date: "30-06-2026"
 excerpt: "From a hacky fix to a mainline Linux driver."
 category: "KERNEL"
 readTime: "4 min"

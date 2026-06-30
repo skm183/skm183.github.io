@@ -4,11 +4,11 @@ const ChangeLog = () => {
     const logs = [
     {
       version: "v2.0.0",
-      date: "28-06-2026",
+      date: "30-06-2026",
       changes: [
         "Migrated hosting from static github pages to a cloud VM",
         "Aquired a new custom (sub)domain registry for the site",
-        "Established a Vulnerability Disclosure Program.",
+        "Established a VDP (Vulnerability Disclosure Program).",
         "Added this change log page",
         "Introduced comment section for blogs",
         "New 404 page",

@@ -27,7 +27,7 @@ const VDP = () => {
                 </div>  
 
                 <p className="text-neutral-300 mb-16 max-w-3xl">
-                    As a security enthusiast, I believe working with skilled researchers is crucial in identifying potential vulnerabilities. If you believe you've found a security issue, please report via email to <span className='text-neutral-500'>[</span><a href="mailto:siddheshkm25@iitk.ac.in?subject=Vulnerability Disclosure Report" className="text-cyan-400 hover:text-cyan-300 underline decoration-cyan-500/30 hover:decoration-cyan-400 underline-offset-4 transition-colors font-semibold">siddheshkm25@iitk.ac.in</a><span className='text-neutral-500'>]</span>. Responsible disclosure is higly valued but any kind of destructive testing is prohibited.
+                    As a security enthusiast, I believe working with skilled researchers is crucial in identifying potential vulnerabilities. A VDP would help both offensive and defensive sides of cybersecurity to grow together. If you believe you've found a security issue, please report via email to <span className='text-neutral-500'>[</span><a href="mailto:siddheshkm25@iitk.ac.in?subject=Vulnerability Disclosure Report" className="text-cyan-400 hover:text-cyan-300 underline decoration-cyan-500/30 hover:decoration-cyan-400 underline-offset-4 transition-colors font-semibold">siddheshkm25@iitk.ac.in</a><span className='text-neutral-500'>]</span>. Responsible disclosure is higly valued but any kind of destructive testing is prohibited.
                 </p>
 
                 <div className="mb-16">
