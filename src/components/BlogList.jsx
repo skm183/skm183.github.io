@@ -7,6 +7,15 @@ import { getDocs, collection } from 'firebase/firestore';
 const BlogList = () => {
   const logs = [
     {
+      date: "06-08-2026",
+      title: "counting_bytes.md",
+      excerpt: "Turning a 3 KB difference into a data leak.",
+      category: "CYBERSEC",
+      readTime: "5 min",
+      link: "/blog/counting_bytes",
+      slug: "counting_bytes"
+    },
+    {
       date: "30-06-2026",
       title: "the_ghost_print_2.md",
       excerpt: "From a hacky fix to a mainline Linux driver.",

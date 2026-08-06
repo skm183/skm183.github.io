@@ -10,6 +10,10 @@ import Comments from '../components/Comments';
 import { db } from '../firebase'; 
 import { doc, setDoc, increment, onSnapshot } from 'firebase/firestore';
 
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
+
 const BlogPost = () => {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
@@ -112,7 +116,7 @@ const BlogPost = () => {
           [&_pre_code]:text-inherit 
           [&_pre_code]:font-inherit
         ">
-            <ReactMarkdown components={markdownComponents} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{post.body}</ReactMarkdown>
+            <ReactMarkdown components={markdownComponents} remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeHighlight, rehypeKatex]}>{post.body}</ReactMarkdown>
         </div>
 
       </div>
