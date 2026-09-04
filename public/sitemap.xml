@@ -13,3 +13,18 @@
     <loc>https://skm183.is-a.dev/changelog</loc>
   </url>
 </urlset>
+
+<!-- Blog Posts -->
+  <url>
+    <loc>https://skm183.is-a.dev/blog/auth_bypass</loc>
+  </url>
+  <url>
+    <loc>https://skm183.is-a.dev/blog/counting_bytes</loc>
+  </url>
+  <url>
+    <loc>https://skm183.is-a.dev/blog/ghost_print_part2</loc>
+  </url>
+  <url>
+    <loc>https://skm183.is-a.dev/blog/ghost_print</loc>
+  </url>
+</urlset>
