@@ -3,7 +3,7 @@ title: "Drafting a Data Leak"
 date: "04-09-2026"
 excerpt: "Exploiting an email preview API to bypass CRM access controls"
 category: "CYBERSEC"
-readTime: "10 min"
+readTime: "5 min"
 ---
 
 > **TL;DR:** Found a template rendering vulnerability in a CRM application, which gave a low privileged user access to admin owned PII.
